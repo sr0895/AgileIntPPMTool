@@ -1,6 +1,7 @@
 package com.hcl.ppmtool.web;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 @RestController
 @RequestMapping("api/project")
+@CrossOrigin
 public class ProjectController {
 
 	@Autowired
