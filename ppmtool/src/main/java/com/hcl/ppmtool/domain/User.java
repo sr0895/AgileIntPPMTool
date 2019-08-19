@@ -1,4 +1,5 @@
 package com.hcl.ppmtool.domain;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User implements UserDetails {
@@ -31,8 +33,18 @@ public class User implements UserDetails {
     private Date update_At;
 
     //OneToMany with Project
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
+    private List<Project> projects = new ArrayList<>();
+    
+    public List<Project> getProjects() {
+		return projects;
+	}
 
-    public User() {
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public User() {
     }
 
     public Long getId() {
